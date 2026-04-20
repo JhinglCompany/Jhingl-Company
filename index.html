@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jhingl Company | Official Website</title>
+    <style>
+        :root {
+            --lilac: #E6E6FA;
+            --primary-purple: #967bb6;
+            --dark-purple: #7a5f99;
+            --white: #ffffff;
+            --text-dark: #333;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--lilac);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: var(--white);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            box-sizing: border-box;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--primary-purple);
+        }
+
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary-purple);
+            padding: 5px;
+        }
+
+        .nav-menu {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            width: 200px;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .nav-menu.active { display: flex; }
+
+        .nav-menu a {
+            padding: 15px;
+            text-decoration: none;
+            color: var(--text-dark);
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.2s;
+        }
+
+        .nav-menu a:hover { background-color: #f8f0f8; }
+
+        main {
+            margin-top: 80px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: calc(100vh - 80px);
+        }
+
+        .section {
+            display: none;
+            width: 100%;
+            max-width: 600px;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .section.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .app-item {
+            border: 2px solid var(--lilac);
+            padding: 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .app-item:hover { border-color: var(--primary-purple); }
+
+        .btn {
+            display: block;
+            padding: 14px;
+            margin: 10px 0;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .btn-primary { background: var(--primary-purple); color: var(--white); }
+        .btn-outline { border: 2px solid var(--primary-purple); color: var(--primary-purple); }
+        .btn:active { transform: scale(0.98); }
+
+        .lang-container {
+            margin-bottom: 20px;
+        }
+
+        select {
+            padding: 5px 10px;
+            border-radius: 8px;
+            border: 1px solid var(--primary-purple);
+            background: white;
+            color: var(--primary-purple);
+        }
+
+        .footer-note {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Jhingl Company</div>
+        <div class="menu-icon" onclick="toggleMenu()">⋮</div>
+        <nav class="nav-menu" id="navMenu">
+            <a href="#" onclick="showSection('home')" id="nav-home">Início</a>
+            <a href="#" onclick="showSection('apps')" id="nav-apps">Aplicativos</a>
+            <a href="#" onclick="showSection('about')" id="nav-about">Sobre Mim</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="lang-container">
+            <select onchange="changeLanguage(this.value)">
+                <option value="pt">🇧🇷 Português</option>
+                <option value="en">🇺🇸 English</option>
+                <option value="es">🇪🇸 Español</option>
+                <option value="fr">🇫🇷 Français</option>
+                <option value="de">🇩🇪 Deutsch</option>
+                <option value="it">🇮🇹 Italiano</option>
+                <option value="ru">🇷🇺 Русский</option>
+                <option value="zh">🇨🇳 中文</option>
+                <option value="ja">🇯🇵 日本語</option>
+                <option value="hi">🇮🇳 हिन्दी</option>
+            </select>
+        </div>
+
+        <div id="home" class="section active">
+            <div class="card">
+                <h1 id="h-title">Bem-vindo à Jhingl Company</h1>
+                <p id="h-subtitle">Soluções independentes e criativas para o seu dia a dia.</p>
+                <button class="btn btn-primary" style="width:100%; border:none; cursor:pointer" onclick="showSection('apps')" id="h-btn">Conhecer Aplicativos</button>
+            </div>
+        </div>
+
+        <div id="apps" class="section">
+            <h2 style="text-align: center;" id="a-title">Nossos Aplicativos</h2>
+            <div class="card">
+                <div class="app-item">
+                    <h3>Jhingl Notes</h3>
+                    <p id="a-desc">Organize suas ideias de forma simples e rápida.</p>
+                    <a href="https://kodular.app/WLD-WXC" class="btn btn-primary" id="btn-apk">⬇️ Baixar APK</a>
+                    <a href="https://jhinglcompany.github.io/jhingl-notes/" class="btn btn-outline" target="_blank" id="btn-web">🌐 Site do App</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="about" class="section">
+            <div class="card">
+                <h2 id="ab-title">Sobre Mim</h2>
+                <p id="ab-text">
+                    Olá! Sou o proprietário da <strong>Jhingl Company</strong>. 
+                    Somos uma empresa independente, sem custos monetários e operamos sem CNPJ, 
+                    movidos pela paixão em desenvolver ferramentas úteis.
+                </p>
+                <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+                <p id="ab-help" style="font-size: 0.9rem;">Ajude a manter nossos projetos:</p>
+                <div style="background: #f9f9f9; padding: 10px; border-radius: 8px; font-weight: bold; font-size: 0.8rem;">
+                    PayPal: Tarcisioestudante13@gmail.com
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-note">© 2024 Jhingl Company</div>
+    </main>
+
+    <script>
+        // Função para alternar o menu
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
+
+        // Função para trocar de seção
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            document.getElementById('navMenu').classList.remove('active');
+        }
+
+        // Dicionário Completo de Traduções
+        const translations = {
+            pt: {
+                home: "Início", apps: "Aplicativos", aboutMenu: "Sobre Mim",
+                hTitle: "Bem-vindo à Jhingl Company", hSub: "Soluções independentes e criativas para o seu dia a dia.", hBtn: "Conhecer Aplicativos",
+                aTitle: "Nossos Aplicativos", aDesc: "Organize suas ideias de forma simples e rápida.",
+                btnApk: "⬇️ Baixar APK", btnWeb: "🌐 Site do App",
+                abTitle: "Sobre Mim", abText: "Olá! Sou o proprietário da <strong>Jhingl Company</strong>. Somos uma empresa independente, sem custos monetários e operamos sem CNPJ, movidos pela paixão em desenvolver ferramentas úteis.", abHelp: "Ajude a manter nossos projetos:"
+            },
+            en: {
+                home: "Home", apps: "Apps", aboutMenu: "About Me",
+                hTitle: "Welcome to Jhingl Company", hSub: "Independent and creative solutions for your daily life.", hBtn: "Discover Apps",
+                aTitle: "Our Applications", aDesc: "Organize your ideas simply and quickly.",
+                btnApk: "⬇️ Download APK", btnWeb: "🌐 App Website",
+                abTitle: "About Me", abText: "Hello! I am the owner of <strong>Jhingl Company</strong>. We are an independent company, without monetary costs and operating without a business ID, driven by a passion for developing useful tools.", abHelp: "Help maintain our projects:"
+            },
+            es: {
+                home: "Inicio", apps: "Aplicaciones", aboutMenu: "Sobre Mí",
+                hTitle: "Bienvenido a Jhingl Company", hSub: "Soluciones independientes y creativas para tu día a día.", hBtn: "Ver Aplicaciones",
+                aTitle: "Nuestras Aplicaciones", aDesc: "Organiza tus ideas de forma sencilla y rápida.",
+                btnApk: "⬇️ Descargar APK", btnWeb: "🌐 Sitio del App",
+                abTitle: "Sobre Mí", abText: "¡Hola! Soy el dueño de <strong>Jhingl Company</strong>. Somos una empresa independiente, operamos sin costos monetarios y sin número de registro comercial, impulsados por la pasión de crear herramientas útiles.", abHelp: "Ayuda a mantener los proyectos:"
+            },
+            fr: {
+                home: "Accueil", apps: "Applications", aboutMenu: "À propos de moi",
+                hTitle: "Bienvenue chez Jhingl Company", hSub: "Des solutions indépendantes et créatives pour votre quotidien.", hBtn: "Découvrir les Apps",
+                aTitle: "Nos Applications", aDesc: "Organisez vos idées simplement et rapidement.",
+                btnApk: "⬇️ Télécharger l'APK", btnWeb: "🌐 Site de l'App",
+                abTitle: "À propos de moi", abText: "Bonjour ! Je suis le propriétaire de <strong>Jhingl Company</strong>. Nous sommes une entreprise indépendante, sans frais monétaires et opérant sans numéro d'entreprise, animés par la passion de développer des outils utiles.", abHelp: "Aidez à maintenir nos projets :"
+            },
+            de: {
+                home: "Startseite", apps: "Apps", aboutMenu: "Über mich",
+                hTitle: "Willkommen bei Jhingl Company", hSub: "Unabhängige und kreative Lösungen für Ihren Alltag.", hBtn: "Apps entdecken",
+                aTitle: "Unsere Anwendungen", aDesc: "Organisieren Sie Ihre Ideen einfach und schnell.",
+                btnApk: "⬇️ APK herunterladen", btnWeb: "🌐 App-Website",
+                abTitle: "Über mich", abText: "Hallo! Ich bin der Eigentümer der <strong>Jhingl Company</strong>. Wir sind ein unabhängiges Unternehmen ohne monetäre Kosten und arbeiten ohne Handelsregisternummer, angetrieben von der Leidenschaft, nützliche Tools zu entwickeln.", abHelp: "Helfen Sie, unsere Projekte zu pflegen:"
+            },
+            it: {
+                home: "Home", apps: "App", aboutMenu: "Su di me",
+                hTitle: "Benvenuti in Jhingl Company", hSub: "Soluzioni indipendenti e creative per la tua vita quotidiana.", hBtn: "Scopri le App",
+                aTitle: "Le nostre applicazioni", aDesc: "Organizza le tue idee in modo semplice e veloce.",
+                btnApk: "⬇️ Scarica APK", btnWeb: "🌐 Sito dell'App",
+                abTitle: "Su di me", abText: "Ciao! Sono il proprietario di <strong>Jhingl Company</strong>. Siamo un'azienda indipendente, senza costi monetari e operiamo senza partita IVA, guidati dalla passione per lo sviluppo di strumenti utili.", abHelp: "Aiuta a mantenere i nostri progetti:"
+            },
+            ru: {
+                home: "Главная", apps: "Приложения", aboutMenu: "Обо мне",
+                hTitle: "Добро пожаловать в Jhingl Company", hSub: "Независимые и творческие решения для вашей повседневной жизни.", hBtn: "Посмотреть приложения",
+                aTitle: "Наши приложения", aDesc: "Организуйте свои идеи просто и быстро.",
+                btnApk: "⬇️ Скачать APK", btnWeb: "🌐 Сайт приложения",
+                abTitle: "Обо мне", abText: "Здравствуйте! Я владелец <strong>Jhingl Company</strong>. Мы независимая компания, работающая без денежных затрат и без регистрации юридического лица, движимая страстью к разработке полезных инструментов.", abHelp: "Помогите поддержать наши проекты:"
+            },
+            zh: {
+                home: "首页", apps: "应用", aboutMenu: "关于我",
+                hTitle: "欢迎来到 Jhingl Company", hSub: "为您的日常生活提供独立而富有创意的解决方案。", hBtn: "探索应用",
+                aTitle: "我们的应用", aDesc: "简单快速地整理您的想法。",
+                btnApk: "⬇️ 下载 APK", btnWeb: "🌐 应用网站",
+                abTitle: "关于我", abText: "你好！我是 <strong>Jhingl Company</strong> 的所有者。我们是一家独立公司，没有货币成本，也没有注册商业编号，出于开发实用工具的热情而运营。", abHelp: "帮助维护我们的项目："
+            },
+            ja: {
+                home: "ホーム", apps: "アプリ", aboutMenu: "私について",
+                hTitle: "Jhingl Companyへようこそ", hSub: "あなたの日常生活のための独立したクリエイティブなソリューション。", hBtn: "アプリを見る",
+                aTitle: "私たちのアプリ", aDesc: "アイデアをシンプルかつ迅速に整理します。",
+                btnApk: "⬇️ APKをダウンロード", btnWeb: "🌐 アプリのサイト",
+                abTitle: "私について", abText: "こんにちは！私は<strong>Jhingl Company</strong>のオーナーです。私たちは金銭的なコストをかけず、事業登録番号なしで運営されている独立した会社であり、便利なツールを開発するという情熱に突き動かされています。", abHelp: "プロジェクトの維持にご協力ください："
+            },
+            hi: {
+                home: "होम", apps: "ऐप्स", aboutMenu: "मेरे बारे में",
+                hTitle: "Jhingl Company में आपका स्वागत है", hSub: "आपके दैनिक जीवन के लिए स्वतंत्र और रचनात्मक समाधान।", hBtn: "ऐप्स देखें",
+                aTitle: "हमारे एप्लिकेशन", aDesc: "अपने विचारों को सरलता और तेज़ी से व्यवस्थित करें।",
+                btnApk: "⬇️ APK डाउनलोड करें", btnWeb: "🌐 ऐप वेबसाइट",
+                abTitle: "मेरे बारे में", abText: "नमस्ते! मैं <strong>Jhingl Company</strong> का मालिक हूँ। हम एक स्वतंत्र कंपनी हैं, जिसकी कोई मौद्रिक लागत नहीं है और हम बिना किसी पंजीकृत व्यवसाय संख्या के काम करते हैं, जो उपयोगी उपकरण विकसित करने के जुनून से प्रेरित है।", abHelp: "हमारी परियोजनाओं को बनाए रखने में मदद करें:"
+            }
+        };
+
+        function changeLanguage(lang) {
+            // Caso o idioma não exista (o que não deve acontecer agora), ele volta pro inglês
+            const t = translations[lang] || translations['en'];
+            
+            document.getElementById('nav-home').innerText = t.home;
+            document.getElementById('nav-apps').innerText = t.apps;
+            document.getElementById('nav-about').innerText = t.aboutMenu;
+            document.getElementById('h-title').innerText = t.hTitle;
+            document.getElementById('h-subtitle').innerText = t.hSub;
+            document.getElementById('h-btn').innerText = t.hBtn;
+            document.getElementById('a-title').innerText = t.aTitle;
+            document.getElementById('a-desc').innerText = t.aDesc;
+            document.getElementById('btn-apk').innerText = t.btnApk;
+            document.getElementById('btn-web').innerText = t.btnWeb;
+            document.getElementById('ab-title').innerText = t.abTitle;
+            document.getElementById('ab-text').innerHTML = t.abText;
+            document.getElementById('ab-help').innerText = t.abHelp;
+        }
+    </script>
+</body>
+</html>
